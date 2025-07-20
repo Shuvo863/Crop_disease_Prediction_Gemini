@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শনাক্তকরণের রেকর্ডসমূহ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top; /* Align content to top */
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+        .record-image {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="back-button">হোমপেজে ফিরে যান</a>
+        <h1>শনাক্তকরণের রেকর্ডসমূহ</h1>
+        {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ছবি</th>
+                    <th>ফসলের নাম</th>
+                    <th>রোগের নাম</th>
+                    <th>পোকামাকড়</th>
+                    <th>আগাছা</th>
+                    <th>কারণ</th>
+                    <th>লক্ষণ</th>
+                    <th>প্রতিরোধমূলক ব্যবস্থা</th>
+                    <th>চিকিৎসামূলক ব্যবস্থা</th>
+                    <th>রাসায়নিক নিয়ন্ত্রণ</th>
+                    <th>জৈবিক নিয়ন্ত্রণ</th>
+                    <th>ACI পণ্য</th>
+                    <th>অতিরিক্ত মন্তব্য</th>
+                    <th>সময়</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>
+                        {% if record.image %}
+                            <img src="{{ record.image.url }}" alt="রোগাক্রান্ত ফসল" class="record-image">
+                        {% else %}
+                            কোনো ছবি নেই
+                        {% endif %}
+                    </td>
+                    <td>{{ record.crop_name }}</td>
+                    <td>{{ record.disease_name }}</td>
+                    <td>{{ record.insect }}</td>
+                    <td>{{ record.weed }}</td>
+                    <td>{{ record.cause }}</td>
+                    <td>{{ record.symptoms }}</td>
+                    <td>{{ record.preventive_measure }}</td>
+                    <td>{{ record.curative_measure }}</td>
+                    <td>{{ record.chemical_control }}</td>
+                    <td>{{ record.biological_control }}</td>
+                    <td>{{ record.aci_products }}</td>
+                    <td>{{ record.additional_comment }}</td>
+                    <td>{{ record.timestamp|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center;">কোনো রেকর্ড পাওয়া যায়নি।</p>
+        {% endif %}
+    </div>
+</body>
+</html>

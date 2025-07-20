@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আবহাওয়ার খবর</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .weather-current {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #e6f7ff;
+            border-radius: 8px;
+            border: 1px solid #b3e0ff;
+        }
+        .weather-current h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .weather-current p {
+            font-size: 1.1em;
+            color: #555;
+            margin: 5px 0;
+        }
+        .weather-forecast {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .forecast-day {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            border: 1px solid #d9edf7;
+        }
+        .forecast-day h3 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="back-button">হোমপেজে ফিরে যান</a>
+        <h1>আবহাওয়ার খবর</h1>
+        {% if weather_data %}
+            <div class="weather-current">
+                <h2>বর্তমান আবহাওয়া: {{ weather_data.location }}</h2>
+                <p>তাপমাত্রা: <strong>{{ weather_data.temperature }}</strong></p>
+                <p>অবস্থা: <strong>{{ weather_data.condition }}</strong></p>
+                <p>আর্দ্রতা: {{ weather_data.humidity }}</p>
+                <p>বাতাসের গতি: {{ weather_data.wind_speed }}</p>
+            </div>
+            <h3>পূর্বাভাস:</h3>
+            <div class="weather-forecast">
+                {% for forecast in weather_data.forecast %}
+                    <div class="forecast-day">
+                        <h3>{{ forecast.day }}</h3>
+                        <p>তাপমাত্রা: {{ forecast.temp }}</p>
+                        <p>অবস্থা: {{ forecast.cond }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="text-align: center;">আবহাওয়ার তথ্য পাওয়া যায়নি।</p>
+        {% endif %}
+    </div>
+</body>
+</html>

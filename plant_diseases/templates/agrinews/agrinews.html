@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কৃষি সংবাদ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item h2 {
+            color: #28a745;
+            margin-top: 0;
+        }
+        .news-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+        .news-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="back-button">হোমপেজে ফিরে যান</a>
+        <h1>কৃষি সংবাদ</h1>
+        {% if news_items %}
+            {% for news in news_items %}
+                <div class="news-item">
+                    <h2>{{ news.title }}</h2>
+                    <p>{{ news.summary }}</p>
+                    <a href="{{ news.link }}" target="_blank">বিস্তারিত পড়ুন</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center;">কোনো কৃষি সংবাদ পাওয়া যায়নি।</p>
+        {% endif %}
+    </div>
+</body>
+</html>

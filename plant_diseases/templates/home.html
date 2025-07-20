@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফসল রোগ নির্ণয় ব্যবস্থা</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .option-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .option-button {
+            display: block;
+            padding: 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+        .option-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ফসল রোগ, পোকামাকড় ও আগাছা নির্ণয় ব্যবস্থা</h1>
+        <div class="option-grid">
+            <a href="{% url 'detector:detect_disease' %}" class="option-button">রোগ শনাক্তকরণ</a>
+            <a href="{% url 'agrinews:agri_news' %}" class="option-button">কৃষি সংবাদ</a>
+            <a href="{% url 'weathernews:weather_news' %}" class="option-button">আবহাওয়ার খবর</a>
+            <a href="{% url 'admin:index' %}" class="option-button">অ্যাডমিন প্যানেল</a>
+        </div>
+    </div>
+</body>
+</html>
