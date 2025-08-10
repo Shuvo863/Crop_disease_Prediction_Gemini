@@ -1,0 +1,30 @@
+# .gitignore
+
+# Python
+*.pyc
+__pycache__/
+.Python
+env/
+venv/
+myenv/  # আপনার ভার্চুয়াল এনভায়রনমেন্টের নাম
+pip-log.txt
+pip-delete-this-arg.txt
+
+# Django
+*.log
+*.pot
+*.mo
+db.sqlite3 # আপনার ডেটাবেস ফাইল
+media/ # আপলোড করা ছবি/ভিডিও
+static_root/ # collectstatic এর আউটপুট
+.env # এনভায়রনমেন্ট ভ্যারিয়েবল ফাইল
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+.Trashes
+Thumbs.db

@@ -3,61 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফসল রোগ নির্ণয় ব্যবস্থা</title>
+    <title>ACI AgriGPT - কৃষি সমাধান</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-        }
-        h1 {
+            padding: 0;
+            background-color: #f4f7f6;
             color: #333;
-            margin-bottom: 30px;
+            line-height: 1.6;
         }
-        .option-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .option-button {
-            display: block;
-            padding: 20px;
-            background-color: #28a745;
+
+        .header {
+            background-color: #28a745; /* Green header */
             color: white;
-            text-decoration: none;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #28a745; /* Card title green */
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 25px;
+            min-height: 70px; /* Ensure consistent card height */
+        }
+
+        .card a {
+            display: inline-block;
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 12px 25px;
             border-radius: 5px;
-            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: bold;
             transition: background-color 0.3s ease;
         }
-        .option-button:hover {
-            background-color: #218838;
+
+        .card a:hover {
+            background-color: #0056b3;
+        }
+
+        .admin-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .admin-link p {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .admin-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .admin-link a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>এসিআই এগ্রি-জিপিটি</h1>
+        <p>কৃষি খাতে আধুনিক প্রযুক্তি ও সমাধান</p>
+    </div>
+
     <div class="container">
-        <h1>ফসল রোগ, পোকামাকড় ও আগাছা নির্ণয় ব্যবস্থা</h1>
-        <div class="option-grid">
-            <a href="{% url 'detector:detect_disease' %}" class="option-button">রোগ শনাক্তকরণ</a>
-            <a href="{% url 'agrinews:agri_news' %}" class="option-button">কৃষি সংবাদ</a>
-            <a href="{% url 'weathernews:weather_news' %}" class="option-button">আবহাওয়ার খবর</a>
-            <a href="{% url 'admin:index' %}" class="option-button">অ্যাডমিন প্যানেল</a>
+        <div class="features-grid">
+            <div class="card">
+                <h2>ফসলের রোগ নির্ণয়</h2>
+                <p>কৃত্রিম বুদ্ধিমত্তা ব্যবহার করে আপনার ফসলের রোগ দ্রুত এবং নির্ভুলভাবে সনাক্ত করুন।</p>
+                <a href="{% url 'detector:detect_disease' %}">শুরু করুন</a>
+            </div>
+            <div class="card">
+                <h2>কৃষি সংবাদ</h2>
+                <p>কৃষি খাতের সর্বশেষ খবর, বাজারের তথ্য এবং নতুন প্রযুক্তি সম্পর্কে আপডেটেড থাকুন।</p>
+                <a href="{% url 'agrinews:agri_news' %}">খবর দেখুন</a>
+            </div>
+            <div class="card">
+                <h2>আবহাওয়ার পূর্বাভাস</h2>
+                <p>আপনার এলাকার জন্য সঠিক আবহাওয়ার পূর্বাভাস জেনে নিন এবং কৃষিকাজ পরিকল্পনা করুন।</p>
+                <a href="{% url 'weathernews:weather_forecast_page' %}">পূর্বাভাস দেখুন</a> {# এই লাইনটি সঠিক আছে #}
+            </div>
         </div>
+
+        <div class="admin-link">
+            <p>সিস্টেম অ্যাডমিনিস্ট্রেশনের জন্য: <a href="/admin/">অ্যাডমিন প্যানেল</a></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 ACI AgriGPT. সকল অধিকার সংরক্ষিত।</p>
     </div>
 </body>
 </html>
